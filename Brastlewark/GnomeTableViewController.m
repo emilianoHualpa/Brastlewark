@@ -14,9 +14,10 @@
 
 @interface GnomeTableViewController ()
 
-@property (strong, nonatomic) IBOutlet UITableView *searchBar;
 @property (strong, nonatomic) NSMutableArray *filteredGnomes;
 @property (assign, nonatomic) BOOL isSearchFiltered;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -29,11 +30,14 @@ static NSString *cellNibName = @"GnomeTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.tableView registerNib:[UINib nibWithNibName:cellNibName bundle:nil] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:cellNibName bundle:nil] forCellReuseIdentifier:cellIdentifier];    
     
     self.searchBar.delegate = self;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     self.tableView.backgroundColor = [GnomeTableViewCell randomColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -57,10 +61,14 @@ static NSString *cellNibName = @"GnomeTableViewCell";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    GnomeTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:segueIdentifier sender:cell];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    GnomeDetailViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"gnomeDetail"];
+    detailVC.gnome = (Gnome *)self.gnomesDataSource[indexPath.row];
+    detailVC.backgroundColor = [(GnomeTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] backgroundColor];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -124,32 +132,21 @@ static NSString *cellNibName = @"GnomeTableViewCell";
                 [wFilteredGnomes addObject:obj];
             }
         }];
+        
+        if (self.filteredGnomes.count == 0) {
+
+        }
     }
     
     [self.tableView reloadData];
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [self.searchBar endEditing:YES];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
 }
-
-#pragma mark - Navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"showGnomeDetail"]) {
-        
-        GnomeDetailViewController *gDetailVC = segue.destinationViewController;
-        NSIndexPath *index = [self.tableView indexPathForCell:sender];
-        gDetailVC.gnome = (Gnome *)self.gnomesDataSource[index.row];
-        gDetailVC.backgroundColor = [(GnomeTableViewCell*)sender backgroundColor];
-    }
-}
-
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GnomeTableViewController : UITableViewController <UISearchBarDelegate>
+@interface GnomeTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (strong, nonatomic) NSArray *gnomesDataSource;
 

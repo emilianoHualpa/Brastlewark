@@ -74,8 +74,8 @@
 		262764961DD1EE74009165F6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				26C0D8501DD1E7D3008C1AA1 /* Main.storyboard */,
 				26E7C6491DD378130043049C /* Launch Screen.storyboard */,
+				26C0D8501DD1E7D3008C1AA1 /* Main.storyboard */,
 				262764AB1DD26676009165F6 /* GnomeTableViewCell.xib */,
 				262764A91DD26676009165F6 /* GnomeTableViewCell.h */,
 				262764AA1DD26676009165F6 /* GnomeTableViewCell.m */,
