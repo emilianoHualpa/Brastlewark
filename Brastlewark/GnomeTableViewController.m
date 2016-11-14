@@ -48,7 +48,23 @@ static NSString *cellNibName = @"GnomeTableViewCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    NSInteger numOfSections = 0;
+    
+    if (self.isSearchFiltered && [self.filteredGnomes count] > 0 ) {
+        self.tableView.backgroundView = nil;
+        numOfSections = 1;
+    } else if (!self.isSearchFiltered && [self.gnomesDataSource count] > 0) {
+        numOfSections = 1;
+    } else {
+        UILabel *noDataLabel         = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
+        noDataLabel.text             = @"No Gnome matches your search...";
+        noDataLabel.textColor        = [UIColor whiteColor];
+        noDataLabel.textAlignment    = NSTextAlignmentCenter;
+        self.tableView.backgroundView = noDataLabel;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    
+    return numOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
