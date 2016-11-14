@@ -65,7 +65,12 @@ static NSString * const kSegue = @"showGnomeTable";
     NSURL *URL = [NSURL URLWithString:url];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", nil];
+    
+    AFJSONResponseSerializer *jsonPlainResponseSerializer = [AFJSONResponseSerializer serializer];
+    NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonPlainResponseSerializer.acceptableContentTypes];
+    [jsonAcceptableContentTypes addObject:@"text/plain"];
+    jsonPlainResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
+    manager.responseSerializer = jsonPlainResponseSerializer;
     
     __weak typeof(UIButton) *wTryAgainButton = self.tryAgainButton;
     __weak typeof(UIButton) *wPlayButton = self.playButton;
