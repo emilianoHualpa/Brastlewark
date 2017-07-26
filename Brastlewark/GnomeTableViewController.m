@@ -80,7 +80,11 @@ static NSString *cellNibName = @"GnomeTableViewCell";
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     GnomeDetailViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"gnomeDetail"];
-    detailVC.gnome = (Gnome *)self.gnomesDataSource[indexPath.row];
+    if (!self.isSearchFiltered) {
+        detailVC.gnome = (Gnome *)self.gnomesDataSource[indexPath.row];
+    } else {
+        detailVC.gnome = (Gnome *)self.filteredGnomes[indexPath.row];
+    }
     detailVC.backgroundColor = [(GnomeTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] backgroundColor];
     [self.navigationController pushViewController:detailVC animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
