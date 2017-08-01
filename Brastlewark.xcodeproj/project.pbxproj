@@ -7,35 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		262764941DD1EE11009165F6 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 262764931DD1EE11009165F6 /* HomeViewController.m */; };
-		2627649A1DD1EF47009165F6 /* Gnome.m in Sources */ = {isa = PBXBuildFile; fileRef = 262764991DD1EF47009165F6 /* Gnome.m */; };
-		2627649D1DD1EF69009165F6 /* GnomeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2627649C1DD1EF69009165F6 /* GnomeDetailViewController.m */; };
-		262764A01DD1EFAD009165F6 /* GnomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2627649F1DD1EFAD009165F6 /* GnomeTableViewController.m */; };
-		262764AC1DD26676009165F6 /* GnomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 262764AA1DD26676009165F6 /* GnomeTableViewCell.m */; };
-		262764AD1DD26676009165F6 /* GnomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 262764AB1DD26676009165F6 /* GnomeTableViewCell.xib */; };
 		266730831F309433001AE764 /* RestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 266730821F309433001AE764 /* RestManager.m */; };
+		266730861F30DAAC001AE764 /* Gnome.m in Sources */ = {isa = PBXBuildFile; fileRef = 266730851F30DAAC001AE764 /* Gnome.m */; };
+		2667308B1F30DAC1001AE764 /* GnomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 266730881F30DAC1001AE764 /* GnomeTableViewCell.m */; };
+		2667308C1F30DAC1001AE764 /* GnomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 266730891F30DAC1001AE764 /* GnomeTableViewCell.xib */; };
+		2667308D1F30DAC1001AE764 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2667308A1F30DAC1001AE764 /* Launch Screen.storyboard */; };
+		266730941F30DAE0001AE764 /* GnomeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2667308F1F30DAE0001AE764 /* GnomeDetailViewController.m */; };
+		266730951F30DAE0001AE764 /* GnomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266730911F30DAE0001AE764 /* GnomeTableViewController.m */; };
+		266730961F30DAE0001AE764 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 266730931F30DAE0001AE764 /* HomeViewController.m */; };
 		26C0D8491DD1E7D3008C1AA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C0D8481DD1E7D3008C1AA1 /* main.m */; };
 		26C0D84C1DD1E7D3008C1AA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C0D84B1DD1E7D3008C1AA1 /* AppDelegate.m */; };
 		26C0D8521DD1E7D3008C1AA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C0D8501DD1E7D3008C1AA1 /* Main.storyboard */; };
 		26C0D8541DD1E7D3008C1AA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C0D8531DD1E7D3008C1AA1 /* Assets.xcassets */; };
-		26E7C64A1DD378130043049C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26E7C6491DD378130043049C /* Launch Screen.storyboard */; };
 		9DB31597C6E7784DDE8425B8 /* libPods-Brastlewark.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 629C1D6609DFFDBBFBFD1DAC /* libPods-Brastlewark.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		262764921DD1EE11009165F6 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		262764931DD1EE11009165F6 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
-		262764981DD1EF47009165F6 /* Gnome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gnome.h; sourceTree = "<group>"; };
-		262764991DD1EF47009165F6 /* Gnome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gnome.m; sourceTree = "<group>"; };
-		2627649B1DD1EF69009165F6 /* GnomeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnomeDetailViewController.h; sourceTree = "<group>"; };
-		2627649C1DD1EF69009165F6 /* GnomeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GnomeDetailViewController.m; sourceTree = "<group>"; };
-		2627649E1DD1EFAD009165F6 /* GnomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnomeTableViewController.h; sourceTree = "<group>"; };
-		2627649F1DD1EFAD009165F6 /* GnomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GnomeTableViewController.m; sourceTree = "<group>"; };
-		262764A91DD26676009165F6 /* GnomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GnomeTableViewCell.h; sourceTree = "<group>"; };
-		262764AA1DD26676009165F6 /* GnomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GnomeTableViewCell.m; sourceTree = "<group>"; };
-		262764AB1DD26676009165F6 /* GnomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GnomeTableViewCell.xib; sourceTree = "<group>"; };
 		266730811F309433001AE764 /* RestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestManager.h; path = Network/RestManager.h; sourceTree = "<group>"; };
 		266730821F309433001AE764 /* RestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestManager.m; path = Network/RestManager.m; sourceTree = "<group>"; };
+		266730841F30DAAC001AE764 /* Gnome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gnome.h; path = Models/Gnome.h; sourceTree = "<group>"; };
+		266730851F30DAAC001AE764 /* Gnome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gnome.m; path = Models/Gnome.m; sourceTree = "<group>"; };
+		266730871F30DAC1001AE764 /* GnomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnomeTableViewCell.h; path = Views/GnomeTableViewCell.h; sourceTree = "<group>"; };
+		266730881F30DAC1001AE764 /* GnomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GnomeTableViewCell.m; path = Views/GnomeTableViewCell.m; sourceTree = "<group>"; };
+		266730891F30DAC1001AE764 /* GnomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GnomeTableViewCell.xib; path = Views/GnomeTableViewCell.xib; sourceTree = "<group>"; };
+		2667308A1F30DAC1001AE764 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Views/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		2667308E1F30DAE0001AE764 /* GnomeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnomeDetailViewController.h; path = Controllers/GnomeDetailViewController.h; sourceTree = "<group>"; };
+		2667308F1F30DAE0001AE764 /* GnomeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GnomeDetailViewController.m; path = Controllers/GnomeDetailViewController.m; sourceTree = "<group>"; };
+		266730901F30DAE0001AE764 /* GnomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GnomeTableViewController.h; path = Controllers/GnomeTableViewController.h; sourceTree = "<group>"; };
+		266730911F30DAE0001AE764 /* GnomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GnomeTableViewController.m; path = Controllers/GnomeTableViewController.m; sourceTree = "<group>"; };
+		266730921F30DAE0001AE764 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controllers/HomeViewController.h; sourceTree = "<group>"; };
+		266730931F30DAE0001AE764 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controllers/HomeViewController.m; sourceTree = "<group>"; };
 		26C0D8441DD1E7D3008C1AA1 /* Brastlewark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brastlewark.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C0D8481DD1E7D3008C1AA1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		26C0D84A1DD1E7D3008C1AA1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		26C0D8511DD1E7D3008C1AA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		26C0D8531DD1E7D3008C1AA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26C0D8581DD1E7D3008C1AA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26E7C6491DD378130043049C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		629C1D6609DFFDBBFBFD1DAC /* libPods-Brastlewark.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Brastlewark.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D479892B6394F2485F50FA7 /* Pods-Brastlewark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brastlewark.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brastlewark/Pods-Brastlewark.release.xcconfig"; sourceTree = "<group>"; };
 		C18AA6EC427EC385497291FB /* Pods-Brastlewark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brastlewark.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Brastlewark/Pods-Brastlewark.debug.xcconfig"; sourceTree = "<group>"; };
@@ -64,12 +64,12 @@
 		262764951DD1EE63009165F6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				262764921DD1EE11009165F6 /* HomeViewController.h */,
-				262764931DD1EE11009165F6 /* HomeViewController.m */,
-				2627649B1DD1EF69009165F6 /* GnomeDetailViewController.h */,
-				2627649C1DD1EF69009165F6 /* GnomeDetailViewController.m */,
-				2627649E1DD1EFAD009165F6 /* GnomeTableViewController.h */,
-				2627649F1DD1EFAD009165F6 /* GnomeTableViewController.m */,
+				2667308E1F30DAE0001AE764 /* GnomeDetailViewController.h */,
+				2667308F1F30DAE0001AE764 /* GnomeDetailViewController.m */,
+				266730901F30DAE0001AE764 /* GnomeTableViewController.h */,
+				266730911F30DAE0001AE764 /* GnomeTableViewController.m */,
+				266730921F30DAE0001AE764 /* HomeViewController.h */,
+				266730931F30DAE0001AE764 /* HomeViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -77,11 +77,11 @@
 		262764961DD1EE74009165F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				26E7C6491DD378130043049C /* Launch Screen.storyboard */,
+				266730871F30DAC1001AE764 /* GnomeTableViewCell.h */,
+				266730881F30DAC1001AE764 /* GnomeTableViewCell.m */,
+				266730891F30DAC1001AE764 /* GnomeTableViewCell.xib */,
+				2667308A1F30DAC1001AE764 /* Launch Screen.storyboard */,
 				26C0D8501DD1E7D3008C1AA1 /* Main.storyboard */,
-				262764AB1DD26676009165F6 /* GnomeTableViewCell.xib */,
-				262764A91DD26676009165F6 /* GnomeTableViewCell.h */,
-				262764AA1DD26676009165F6 /* GnomeTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -89,8 +89,8 @@
 		262764971DD1EF12009165F6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				262764981DD1EF47009165F6 /* Gnome.h */,
-				262764991DD1EF47009165F6 /* Gnome.m */,
+				266730841F30DAAC001AE764 /* Gnome.h */,
+				266730851F30DAAC001AE764 /* Gnome.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -233,9 +233,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				262764AD1DD26676009165F6 /* GnomeTableViewCell.xib in Resources */,
+				2667308D1F30DAC1001AE764 /* Launch Screen.storyboard in Resources */,
 				26C0D8541DD1E7D3008C1AA1 /* Assets.xcassets in Resources */,
-				26E7C64A1DD378130043049C /* Launch Screen.storyboard in Resources */,
+				2667308C1F30DAC1001AE764 /* GnomeTableViewCell.xib in Resources */,
 				26C0D8521DD1E7D3008C1AA1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,14 +295,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2627649D1DD1EF69009165F6 /* GnomeDetailViewController.m in Sources */,
 				266730831F309433001AE764 /* RestManager.m in Sources */,
-				262764AC1DD26676009165F6 /* GnomeTableViewCell.m in Sources */,
-				2627649A1DD1EF47009165F6 /* Gnome.m in Sources */,
-				262764A01DD1EFAD009165F6 /* GnomeTableViewController.m in Sources */,
+				2667308B1F30DAC1001AE764 /* GnomeTableViewCell.m in Sources */,
+				266730941F30DAE0001AE764 /* GnomeDetailViewController.m in Sources */,
+				266730861F30DAAC001AE764 /* Gnome.m in Sources */,
+				266730951F30DAE0001AE764 /* GnomeTableViewController.m in Sources */,
 				26C0D84C1DD1E7D3008C1AA1 /* AppDelegate.m in Sources */,
 				26C0D8491DD1E7D3008C1AA1 /* main.m in Sources */,
-				262764941DD1EE11009165F6 /* HomeViewController.m in Sources */,
+				266730961F30DAE0001AE764 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
