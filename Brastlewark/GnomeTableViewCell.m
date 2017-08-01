@@ -10,11 +10,15 @@
 
 @implementation GnomeTableViewCell
 
-+ (UIColor *)randomColor {
-    CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.2;  //  0.2 to 1.0, away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.2;  //  0.2 to 1.0, away from black
-    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
++ (UIColor *)colorForGender:(NSString*)hairColor {
+    
+    NSString *colorLowercase = [hairColor lowercaseString];
+    
+    if ([colorLowercase isEqualToString:@"pink"]) {
+        return [UIColor colorWithRed:0.74 green:0.41 blue:0.53 alpha:1.0];;
+    } else {
+        return [UIColor colorWithRed:0.41 green:0.52 blue:0.74 alpha:1.0];;
+    }
 }
 
 @end

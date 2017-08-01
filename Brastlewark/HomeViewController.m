@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "GnomeTableViewController.h"
 #import "Gnome.h"
-#import <AFNetworking.h>
+#import "RestManager.h"
 
 @interface HomeViewController ()
 
@@ -22,8 +22,8 @@
 
 @implementation HomeViewController
 
-static NSString * const kBaseURLString = @"https://raw.githubusercontent.com/AXA-GROUP-SOLUTIONS/mobilefactory-test/master/data.json";
 static NSString * const kSegue = @"showGnomeTable";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,10 +33,10 @@ static NSString * const kSegue = @"showGnomeTable";
     [self.tryAgainButton setHidden:YES];
     [self.spinner setHidesWhenStopped:YES];
     self.gnomesDataSource = NSMutableArray.new;
-    [self getGnomes:kBaseURLString];
+    [self getGnomes:Brastlewark];
 }
 
--(void) viewWillAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
@@ -54,79 +54,62 @@ static NSString * const kSegue = @"showGnomeTable";
 
 #pragma mark - Data Handling
 
--(void)getGnomes:(NSString*)url{
+-(void)getGnomes:(GnomesTown)town{
     
     [self.playButton setHidden:YES];
     [self.tryAgainButton setHidden:YES];
     [self.spinner startAnimating];
     
-    //Gets JSON from URL and serialize it using AFNetworking.
-    
-    NSURL *URL = [NSURL URLWithString:url];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    AFJSONResponseSerializer *jsonPlainResponseSerializer = [AFJSONResponseSerializer serializer];
-    NSMutableSet *jsonAcceptableContentTypes = [NSMutableSet setWithSet:jsonPlainResponseSerializer.acceptableContentTypes];
-    [jsonAcceptableContentTypes addObject:@"text/plain"];
-    jsonPlainResponseSerializer.acceptableContentTypes = jsonAcceptableContentTypes;
-    manager.responseSerializer = jsonPlainResponseSerializer;
-    
     __weak typeof(UIButton) *wTryAgainButton = self.tryAgainButton;
     __weak typeof(UIButton) *wPlayButton = self.playButton;
     __weak typeof(self) wSelf = self;
     
-    [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            NSArray *brastlewark = (NSArray*)[responseObject objectForKey:@"Brastlewark"];
-            [self populateGnomesList:brastlewark];
-        }
-
+    [[RestManager sharedManager] getGnomesForTown:town
+                                          success:^(NSArray *gnomes) {
+        [self populateGnomesList:gnomes];
         [self.spinner stopAnimating];
-        [wPlayButton setHidden:NO];
-               
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        [wPlayButton setHidden:NO]; }
+                                          failure:^(NSError *error) {
         NSLog(@"Error: %@", error);
         [self.spinner stopAnimating];
         
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                 message:@"There was an error and we couldn't find any inhabitant 👹 in Brastlewark, please try again."
+                                                                                 message:@"There was an error and we couldn't find any inhabitant 👹 in that town, please try again."
                                                                           preferredStyle:UIAlertControllerStyleAlert];
         //Add a retry button to the alert controller
         UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Try again!!!"
                                                            style:UIAlertActionStyleDefault
                                                          handler:^(UIAlertAction * action) {
                                                              NSLog(@"Trying again...");
-                                                             [wSelf getGnomes:kBaseURLString];
+                                                             [wSelf getGnomes:Brastlewark];
                                                          }];
         //Add a cancel button to the alert controller
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"😳 I'm tired, it doesn't work."
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * action) {
-                                                             NSLog(@"Just canceled by the user...");
-                                                             [wPlayButton setHidden:YES];
-                                                             [wTryAgainButton setHidden:NO];
-                                                         }];
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * action) {
+                                                                 NSLog(@"Just canceled by the user...");
+                                                                 [wPlayButton setHidden:YES];
+                                                                 [wTryAgainButton setHidden:NO];
+                                                             }];
         [alertController addAction:actionOk];
         [alertController addAction:cancelAction];
         [self presentViewController:alertController animated:YES completion:nil];
     }];
 }
 
--(void) populateGnomesList: (NSArray*) gnomeList {
+-(void)populateGnomesList:(NSArray*)gnomeList {
     
+    __weak typeof(self) wSelf = self;
     [gnomeList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         Gnome* gnome = [[Gnome alloc] initWithConfiguration:obj];
         
-        [self.gnomesDataSource addObject:gnome];
+        [wSelf.gnomesDataSource addObject:gnome];
     }];
 }
 
 - (IBAction)tryAgainPressed:(UIButton *)sender {
-    [self getGnomes:kBaseURLString];
+    [self getGnomes:Brastlewark];
 }
-
 
 
 

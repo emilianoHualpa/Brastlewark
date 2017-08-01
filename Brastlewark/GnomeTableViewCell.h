@@ -14,6 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *cellMainLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cellDetailLabel;
 
-+ (UIColor *)randomColor;
++ (UIColor *)colorForGender:(NSString*)hairColor;
 
 @end

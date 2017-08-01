@@ -7,7 +7,7 @@
 //
 
 #import "GnomeDetailViewController.h"
-#import <UIImageView+AFNetworking.h>
+#import "RestManager.h"
 
 @interface GnomeDetailViewController ()
 
@@ -17,11 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self styleNavBar];
-    
     [self populateData];
-    
 }
 
 -(void)styleNavBar {
@@ -31,7 +28,6 @@
      @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                   forBarMetrics:UIBarMetricsDefault];
-    
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBar.backgroundColor = [UIColor darkGrayColor];
@@ -39,35 +35,15 @@
 }
 
 -(void)populateData {
-    self.proffesionsValueLabel.numberOfLines = 0;
-    self.friendsValueLabel.numberOfLines = 0;
-    
     self.nameLabel.text = self.gnome.name;
     self.ageValueLabel.text = [NSString stringWithFormat:@"%li", (long)self.gnome.age];
     self.weightValueLabel.text = [NSString stringWithFormat:@"%.2f", self.gnome.weight];
     self.heightValueLabel.text = [NSString stringWithFormat:@"%.2f", self.gnome.height];
     self.hairColorValueLabel.text = self.gnome.hairColor;
-    self.proffesionsValueLabel.text = [self concatenateStringsInArray: self.gnome.professions withEmptyMessage:@"No professions found."];
-    self.friendsValueLabel.text = [self concatenateStringsInArray: self.gnome.friends withEmptyMessage:@"Apparently I don't have any friends. 😢"];
-    
-    // Download images asynchronously
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:self.gnome.thumbnailURL
-                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
-                                              timeoutInterval:60];
-    
-    [self.thumbnailImg setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"placeholder"] success:nil failure:nil];
-}
-
--(NSString*)concatenateStringsInArray:(NSArray*)array withEmptyMessage:(NSString*)emptyMessage{
-    
-    if (array.count != 0){
-        // Concatenate professions into String
-        NSMutableString *stringConcatenated = (NSMutableString*)[array componentsJoinedByString:@", "];
-        [stringConcatenated appendString:@"."];
-        return stringConcatenated;
-    } else {
-        return emptyMessage;
-    }
+    self.proffesionsValueLabel.text = self.gnome.professionsString;
+    self.friendsValueLabel.text = self.gnome.friendsString;
+   
+    [[RestManager sharedManager] getImageForGnome:self.thumbnailImg fromURL:self.gnome.thumbnailURL];
 }
 
 @end

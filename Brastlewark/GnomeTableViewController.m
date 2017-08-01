@@ -10,7 +10,7 @@
 #import "GnomeDetailViewController.h"
 #import "GnomeTableViewCell.h"
 #import "Gnome.h"
-#import <UIImageView+AFNetworking.h>
+#import "RestManager.h"
 
 @interface GnomeTableViewController ()
 
@@ -26,6 +26,8 @@
 static NSString *cellIdentifier = @"gnomeCell";
 static NSString *segueIdentifier = @"showGnomeDetail";
 static NSString *cellNibName = @"GnomeTableViewCell";
+static NSString *gnomeMainStoryboard = @"Main";
+static NSString *gnomeDetailViewControllerIdentifier = @"gnomeDetail";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,8 +38,10 @@ static NSString *cellNibName = @"GnomeTableViewCell";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.tableView.backgroundColor = [GnomeTableViewCell randomColor];
+    self.tableView.backgroundColor = [UIColor grayColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.searchBar.placeholder = @"Search by name";
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -56,10 +60,10 @@ static NSString *cellNibName = @"GnomeTableViewCell";
     } else if (!self.isSearchFiltered && [self.gnomesDataSource count] > 0) {
         numOfSections = 1;
     } else {
-        UILabel *noDataLabel         = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
-        noDataLabel.text             = @"No Gnome matches your search...";
-        noDataLabel.textColor        = [UIColor whiteColor];
-        noDataLabel.textAlignment    = NSTextAlignmentCenter;
+        UILabel *noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
+        noDataLabel.text = @"No Gnome matches your search...";
+        noDataLabel.textColor = [UIColor whiteColor];
+        noDataLabel.textAlignment = NSTextAlignmentCenter;
         self.tableView.backgroundView = noDataLabel;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
@@ -78,8 +82,8 @@ static NSString *cellNibName = @"GnomeTableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    GnomeDetailViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"gnomeDetail"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:gnomeMainStoryboard bundle: nil];
+    GnomeDetailViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:gnomeDetailViewControllerIdentifier];
     detailVC.gnome = (Gnome *)self.gnomesDataSource[indexPath.row];
     detailVC.backgroundColor = [(GnomeTableViewCell*)[tableView cellForRowAtIndexPath:indexPath] backgroundColor];
     [self.navigationController pushViewController:detailVC animated:YES];
@@ -96,32 +100,14 @@ static NSString *cellNibName = @"GnomeTableViewCell";
     }
     
     // Get current Gnome for row
-    Gnome* gnome;
+    Gnome* gnome = self.isSearchFiltered ? (Gnome *)self.filteredGnomes[indexPath.row] : (Gnome *)self.gnomesDataSource[indexPath.row];
     
-    if (!self.isSearchFiltered) {
-        // Get current Gnome for row
-        gnome = (Gnome *)self.gnomesDataSource[indexPath.row];
-    } else {
-        // Get filtered Gnome for row
-        gnome = (Gnome *)self.filteredGnomes[indexPath.row];
-    }
-    
-    // Concatenate professions into String
-    NSMutableString *professions = (NSMutableString*)[gnome.professions componentsJoinedByString:@", "];
-    [professions appendString:@"."];
-    
-    // Download images asynchronously
-    NSURLRequest *imageRequest = [NSURLRequest requestWithURL:gnome.thumbnailURL
-                                                  cachePolicy:NSURLRequestReturnCacheDataElseLoad
-                                              timeoutInterval:60];
-    
-    [cell.cellImageView setImageWithURLRequest:imageRequest placeholderImage:[UIImage imageNamed:@"placeholder"] success:nil failure:nil];
-
     // Set cell data
     cell.cellMainLabel.text = gnome.name;
-    cell.cellDetailLabel.text = professions;
+    cell.cellDetailLabel.text = [NSString stringWithFormat:@"Age: %ld", (long)gnome.age];
     cell.cellDetailLabel.numberOfLines = 2;
-    cell.backgroundColor = [GnomeTableViewCell randomColor];
+    cell.backgroundColor = [GnomeTableViewCell colorForGender:gnome.hairColor];
+    [[RestManager sharedManager] getImageForGnome:cell.cellImageView fromURL:gnome.thumbnailURL];
     
     return cell;
 }
@@ -150,7 +136,7 @@ static NSString *cellNibName = @"GnomeTableViewCell";
         }];
         
         if (self.filteredGnomes.count == 0) {
-
+            NSLog(@"Empty search");
         }
     }
     

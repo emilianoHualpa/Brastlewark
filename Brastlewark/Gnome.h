@@ -18,7 +18,9 @@
 @property (assign, nonatomic) double height;
 @property (strong, nonatomic) NSString *hairColor;
 @property (strong, nonatomic) NSArray *professions;
+@property (strong, nonatomic) NSString *professionsString;
 @property (strong, nonatomic) NSArray *friends;
+@property (strong, nonatomic) NSString *friendsString;
 
 //Initializer
 - (instancetype) initWithConfiguration:(NSDictionary *)configuration;
